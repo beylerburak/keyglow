@@ -1,0 +1,7 @@
+"""Keyglow: keyboard lighting for MSI-based laptops with a SteelSeries KLC controller."""
+__version__ = "0.1.0"
+APP_ID = "io.github.beylerburak.Keyglow"
+APP_NAME = "Keyglow"
+AUTHOR = "beylerburak"
+AUTHOR_URL = "https://github.com/beylerburak"
+WEBSITE = "https://github.com/beylerburak/keyglow"

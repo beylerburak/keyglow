@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "configure" ]; then
+    # Restore the lighting after resume (and, through udev, at boot).
+    systemctl daemon-reload >/dev/null 2>&1 || true
+    systemctl enable keyglow-restore.service >/dev/null 2>&1 || true
+    # Restore the lighting at every user's login.
+    systemctl --global reenable keyglow.service >/dev/null 2>&1 || true
+    # Give the logged-in user access to the controller right away.
+    if command -v udevadm >/dev/null 2>&1; then
+        udevadm control --reload-rules || true
+        udevadm trigger --subsystem-match=hidraw --action=change || true
+    fi
+fi

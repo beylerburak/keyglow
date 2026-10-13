@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Keyglow
+GenericName=Keyboard Lighting
+Comment=Change the color and effects of your keyboard backlight
+Exec=keyglow gui
+Icon=io.github.beylerburak.Keyglow
+Terminal=false
+Categories=Settings;HardwareSettings;GTK;
+Keywords=keyboard;backlight;rgb;lighting;led;color;steelseries;steelseries gg;msi;monster;
+StartupNotify=true

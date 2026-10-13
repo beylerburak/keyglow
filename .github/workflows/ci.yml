@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -t . -v
+      - name: Validate desktop and AppStream files
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq desktop-file-utils appstream
+          desktop-file-validate data/io.github.beylerburak.Keyglow.desktop
+          appstreamcli validate --no-net data/io.github.beylerburak.Keyglow.metainfo.xml
+
+  package:
+    needs: test
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build .deb
+        id: build
+        run: echo "deb=$(packaging/build-deb.sh dist)" >> "$GITHUB_OUTPUT"
+      - name: Check that the package installs
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y "${{ steps.build.outputs.deb }}"
+          keyglow --version
+          keyglow effects
+      - uses: actions/upload-artifact@v4
+        with:
+          name: keyglow-deb
+          path: dist/*.deb
+      - name: Attach to the GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 \
+            || gh release create "$TAG" --title "Keyglow ${TAG#v}" --generate-notes
+          gh release upload "$TAG" dist/*.deb --clobber

@@ -1,0 +1,13 @@
+[Unit]
+Description=Restore Keyglow keyboard lighting at login
+# Runs on every graphical login, even when the user manager keeps running
+# between sessions (lingering, SSH sessions).
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/keyglow apply --quiet
+
+[Install]
+WantedBy=graphical-session.target

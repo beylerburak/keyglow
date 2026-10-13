@@ -1,0 +1,3 @@
+# Keyglow: let the logged-in user talk to the SteelSeries KLC keyboard lighting
+# controller without root, and restore the lighting whenever it appears.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="113a|1122", TAG+="uaccess", TAG+="systemd", ENV{SYSTEMD_WANTS}+="keyglow-restore.service"

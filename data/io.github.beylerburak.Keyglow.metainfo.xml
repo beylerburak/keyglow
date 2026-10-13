@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.beylerburak.Keyglow</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Keyglow</name>
+  <summary>Keyboard lighting for MSI laptops with SteelSeries keyboards</summary>
+  <developer id="io.github.beylerburak">
+    <name>beylerburak</name>
+  </developer>
+  <description>
+    <p>
+      Keyglow controls the per-key RGB keyboard of MSI-based laptops (including
+      rebrands such as Monster) that use a SteelSeries KLC controller. It does the
+      job of SteelSeries GG on Linux.
+    </p>
+    <p>Effects:</p>
+    <ul>
+      <li>Static, Breathing and Color Cycle</li>
+      <li>Rainbow Wave and Color Wave, with direction and size</li>
+      <li>Starlight</li>
+      <li>Reactive: keys light up as you type</li>
+    </ul>
+    <p>
+      Effects run on the keyboard controller itself, so they stay smooth and use no
+      CPU, even when Keyglow is closed. Your lighting is restored at login and after
+      suspend.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.beylerburak.Keyglow.desktop</launchable>
+  <url type="homepage">https://github.com/beylerburak/keyglow</url>
+  <url type="bugtracker">https://github.com/beylerburak/keyglow/issues</url>
+  <url type="vcs-browser">https://github.com/beylerburak/keyglow</url>
+  <provides>
+    <modalias>usb:v1038p113A*</modalias>
+    <modalias>usb:v1038p1122*</modalias>
+    <binary>keyglow</binary>
+  </provides>
+  <categories>
+    <category>Settings</category>
+    <category>HardwareSettings</category>
+  </categories>
+  <keywords>
+    <keyword>keyboard</keyword>
+    <keyword>backlight</keyword>
+    <keyword>RGB</keyword>
+    <keyword>SteelSeries</keyword>
+    <keyword>MSI</keyword>
+  </keywords>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Rainbow Wave with the live keyboard preview</caption>
+      <image>https://raw.githubusercontent.com/beylerburak/keyglow/main/docs/screenshots/light.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Dark style</caption>
+      <image>https://raw.githubusercontent.com/beylerburak/keyglow/main/docs/screenshots/dark.png</image>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.1"/>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </supports>
+  <releases>
+    <release version="0.1.0" date="2026-10-14">
+      <description>
+        <p>First release.</p>
+      </description>
+    </release>
+  </releases>
+</component>

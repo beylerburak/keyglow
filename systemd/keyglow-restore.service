@@ -1,0 +1,13 @@
+[Unit]
+Description=Restore Keyglow keyboard lighting
+Documentation=https://github.com/beylerburak/keyglow
+# Started by udev when the keyboard controller appears (boot), and after
+# resuming from sleep.
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/keyglow restore --quiet
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
